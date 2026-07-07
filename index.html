@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blueprint Lab — Peptide Research Assistant</title>
+  <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+  <div id="bl-chatbot">
+    <button id="bl-chat-button" aria-label="Open chat">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+      </svg>
+    </button>
+    <div id="bl-chat-window">
+      <div id="bl-chat-header">
+        <span>Blueprint Lab Assistant</span>
+        <button id="bl-close-chat" aria-label="Close chat">&times;</button>
+      </div>
+      <div id="bl-chat-messages"></div>
+      <div id="bl-chat-options"></div>
+      <div id="bl-input-container">
+        <input type="text" id="bl-user-input" placeholder="Type your question...">
+        <button id="bl-send-btn">Send</button>
+      </div>
+    </div>
+  </div>
+  <script src="chatbot.js"></script>
+</body>
+</html>

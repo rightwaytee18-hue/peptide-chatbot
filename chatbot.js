@@ -407,7 +407,13 @@ Benefits: Comprehensive tissue repair
     this.inputContainer = document.getElementById('bl-input-container');
     this.userInput = document.getElementById('bl-user-input');
     this.sendBtn = document.getElementById('bl-send-btn');
-    
+
+    if (!this.chatButton || !this.chatWindow || !this.closeButton || !this.messagesDiv ||
+        !this.optionsDiv || !this.inputContainer || !this.userInput || !this.sendBtn) {
+      console.warn('BLChatbot: required chat elements not found in the page; widget not initialized. See index.html for the expected markup.');
+      return;
+    }
+
     this.chatButton.addEventListener('click', () => this.toggleChat());
     this.closeButton.addEventListener('click', () => this.toggleChat());
     this.sendBtn.addEventListener('click', () => this.handleUserMessage());
@@ -736,10 +742,17 @@ Benefits: Comprehensive tissue repair
     const messageDiv = document.createElement('div');
     messageDiv.className = `bl-message bl-${sender}-message`;
     
-    const formattedText = text
+    const escapedText = String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+    const formattedText = escapedText
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\n/g, '<br>');
-    
+
     messageDiv.innerHTML = formattedText;
     this.messagesDiv.appendChild(messageDiv);
     this.messagesDiv.scrollTop = this.messagesDiv.scrollHeight;
